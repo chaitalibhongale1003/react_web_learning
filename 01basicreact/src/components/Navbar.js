@@ -12,13 +12,20 @@ function Navbar() {
           Home
         </Link>
 
-        <Link style={styles.link} to="/about">
+        <Link style={styles.link} to="/about"
+          state={{
+            name: "Chaitali",
+            city: "Atpadi",
+            role: "Flutter Developer"
+          }}>
           About
         </Link>
 
         <Link style={styles.link} to="/contact">
           Contact
         </Link>
+
+         <Link style={styles.link} to="/dashboard">Dashboard</Link>
 
       </div>
 

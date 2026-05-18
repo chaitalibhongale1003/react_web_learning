@@ -1,11 +1,28 @@
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+    const navigate = useNavigate();
+    const goToAbout = () => {
+
+    navigate("/about", {
+      state: {
+        name: "Chaitali",
+        city: "Atpadi",
+        role: "Flutter Developer"
+      }
+    });
+
+  };
   return (
     <div style={styles.container}>
 
-      {/* <h1>Home Page</h1>
-      <p>
+      <h1>Home Page</h1>
+      {/* <p>
         Welcome to our React website.
       </p> */}
+      <button onClick={goToAbout}>
+      Go to About
+      </button>
       <img
         src="https://www.etatvasoft.com/blog/wp-content/uploads/2020/06/reactjs-for-web-development-why-where-to-use.jpg"
         alt="banner"
