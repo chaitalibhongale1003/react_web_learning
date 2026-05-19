@@ -9,6 +9,8 @@ import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 
+import UseStatePOC from "./components/hooks/UseStateHook";
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,10 +28,15 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         
         {/* Nested Navigation */}
-<Route path="/dashboard" element={<Dashboard />}>
-  <Route path="profile" element={<Profile />} />
-  <Route path="settings" element={<Settings />} />
-</Route>
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+        
+        <Route
+          path="/useStateHook"
+          element={<UseStatePOC />}
+        />
 
       </Routes>
 

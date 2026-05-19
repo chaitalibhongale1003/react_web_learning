@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+
 function Home() {
     const navigate = useNavigate();
     const goToAbout = () => {
@@ -13,6 +14,11 @@ function Home() {
     });
 
   };
+
+  const goToUseStateHook = () => {
+  navigate("/useStateHook");
+  };
+
   return (
     <div style={styles.container}>
 
@@ -20,15 +26,20 @@ function Home() {
       {/* <p>
         Welcome to our React website.
       </p> */}
-      <button onClick={goToAbout}>
-      Go to About
-      </button>
+      
       <img
         src="https://www.etatvasoft.com/blog/wp-content/uploads/2020/06/reactjs-for-web-development-why-where-to-use.jpg"
         alt="banner"
         style={styles.image}
       />
+      <br/>
+      <button style={styles.button} onClick={goToAbout}>
+      Go to About
+      </button>
 
+      <button style={styles.button} onClick={goToUseStateHook}>
+       UseState Hook
+      </button>
     </div>
   );
 }
@@ -39,10 +50,14 @@ const styles = {
   },
 
   image: {
-    width: "100%",
+    width: "20%",
     marginTop: "10px",
     borderRadius: "10px",
   },
+  button: {
+     marginTop: "10px",
+     marginRight: "10px"
+  }
 };
 
 export default Home;
