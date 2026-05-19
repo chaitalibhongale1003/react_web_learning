@@ -26,13 +26,10 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         
         {/* Nested Navigation */}
-        <Route path="/dashboard" element={<Dashboard />}>
-
-          <Route path="profile" element={<Profile />} />
-
-          <Route path="settings" element={<Settings />} />
-
-        </Route>
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<Profile />} />
+  <Route path="settings" element={<Settings />} />
+</Route>
 
       </Routes>
 

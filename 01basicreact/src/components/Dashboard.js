@@ -2,25 +2,48 @@ import { Link, Outlet } from "react-router-dom";
 
 function Dashboard() {
   return (
-    <div>
+    <div style={styles.container}>
 
       <h1>Dashboard Page</h1>
 
-      <nav>
-        <Link to="profile">Profile</Link>
+      <div style={styles.menu}>
 
-        <br />
+        <Link style={styles.link} to="profile">
+          Profile
+        </Link>
 
-        <Link to="settings">Settings</Link>
-      </nav>
+        <Link style={styles.link} to="settings">
+          Settings
+        </Link>
+
+      </div>
 
       <hr />
 
-      {/* Child page shows here */}
+      {/* Child Routes */}
       <Outlet />
 
     </div>
   );
 }
+
+const styles = {
+  container: {
+    padding: "20px",
+  },
+
+  menu: {
+    display: "flex",
+    gap: "20px",
+    marginBottom: "20px",
+  },
+
+  link: {
+    textDecoration: "none",
+    color: "blue",
+    fontSize: "20px",
+    fontWeight: "bold",
+  },
+};
 
 export default Dashboard;
