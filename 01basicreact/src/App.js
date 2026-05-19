@@ -11,6 +11,7 @@ import Settings from "./components/Settings";
 
 import UseStatePOC from "./components/hooks/UseStateHook";
 import UseEffectPOC from "./components/hooks/UseEffectHook";
+import UseContextPOC from "./components/hooks/useContextHook";
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
         <Route
           path="/useEffectHook"
           element={<UseEffectPOC />}
+        />
+
+        <Route
+          path="/useContextHook"
+          element={<UseContextPOC />}
         />
 
       </Routes>

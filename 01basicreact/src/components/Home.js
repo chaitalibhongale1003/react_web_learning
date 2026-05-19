@@ -23,6 +23,10 @@ function Home() {
   navigate("/useEffectHook");
   };
 
+  const goToUseContextHook = () => {
+  navigate("/useContextHook");
+  };
+
   return (
     <div style={styles.container}>
 
@@ -47,6 +51,10 @@ function Home() {
 
       <button style={styles.button} onClick={goToUseEffectHook}>
        UseEffect Hook
+      </button>
+
+      <button style={styles.button} onClick={goToUseContextHook}>
+       UseContext Hook
       </button>
     </div>
   );
