@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import Settings from "./components/Settings";
 
 import UseStatePOC from "./components/hooks/UseStateHook";
+import UseEffectPOC from "./components/hooks/UseEffectHook";
 
 function App() {
   return (
@@ -32,10 +33,15 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-        
+
         <Route
           path="/useStateHook"
           element={<UseStatePOC />}
+        />
+
+        <Route
+          path="/useEffectHook"
+          element={<UseEffectPOC />}
         />
 
       </Routes>

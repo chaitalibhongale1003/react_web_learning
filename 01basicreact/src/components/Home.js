@@ -19,6 +19,10 @@ function Home() {
   navigate("/useStateHook");
   };
 
+  const goToUseEffectHook = () => {
+  navigate("/useEffectHook");
+  };
+
   return (
     <div style={styles.container}>
 
@@ -39,6 +43,10 @@ function Home() {
 
       <button style={styles.button} onClick={goToUseStateHook}>
        UseState Hook
+      </button>
+
+      <button style={styles.button} onClick={goToUseEffectHook}>
+       UseEffect Hook
       </button>
     </div>
   );
