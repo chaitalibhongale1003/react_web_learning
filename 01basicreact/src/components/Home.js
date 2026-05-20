@@ -27,6 +27,22 @@ function Home() {
   navigate("/useContextHook");
   };
 
+  const goToUseCallbackHook = () => {
+  navigate("/useCallbackHook");
+  };
+
+  const goToUseMemoHook = () => {
+  navigate("/useMemoHook");
+  };
+
+  const goToRefHook = () => {
+  navigate("/useRefHook");
+  };
+
+  const goToReducerHook = () => {
+  navigate("/useReducerHook");
+  };
+
   return (
     <div style={styles.container}>
 
@@ -55,6 +71,22 @@ function Home() {
 
       <button style={styles.button} onClick={goToUseContextHook}>
        UseContext Hook
+      </button>
+
+      <button style={styles.button} onClick={goToUseCallbackHook}>
+       UseCallback Hook
+      </button>
+
+      <button style={styles.button} onClick={goToUseMemoHook}>
+       UseMemo Hook
+      </button>
+
+      <button style={styles.button} onClick={goToRefHook}>
+       UseRef Hook
+      </button>
+
+      <button style={styles.button} onClick={goToReducerHook}>
+       UseReducer Hook
       </button>
     </div>
   );

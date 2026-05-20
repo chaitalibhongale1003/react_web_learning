@@ -12,6 +12,10 @@ import Settings from "./components/Settings";
 import UseStatePOC from "./components/hooks/UseStateHook";
 import UseEffectPOC from "./components/hooks/UseEffectHook";
 import UseContextPOC from "./components/hooks/useContextHook";
+import UseCallbackPOC from "./components/hooks/UseCallbackHook";
+import UseMemoPOC from "./components/hooks/UseMemoHook";
+import UseRefPOC from "./components/hooks/UseRefHook";
+import UseReducerPOC from "./components/hooks/useReducerHook";
 
 function App() {
   return (
@@ -48,6 +52,26 @@ function App() {
         <Route
           path="/useContextHook"
           element={<UseContextPOC />}
+        />
+
+        <Route
+          path="/useCallbackHook"
+          element={<UseCallbackPOC />}
+        />
+
+        <Route
+          path="/useMemoHook"
+          element={<UseMemoPOC />}
+        />
+
+        <Route
+          path="/useRefHook"
+          element={<UseRefPOC />}
+        />
+
+        <Route
+          path="/useReducerHook"
+          element={<UseReducerPOC />}
         />
 
       </Routes>
