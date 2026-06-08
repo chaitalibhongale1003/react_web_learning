@@ -13,12 +13,13 @@ function App() {
 
   const { state, dispatch } = useContext(GlobalContext);
   const { data: initialUsers, loading } = useFetch('https://dummyjson.com/users?limit=10');
-
+  
   useEffect(() => {
-    if (initialUsers) {
-      dispatch({ type: 'SET_EMPLOYEES', payload: initialUsers });
-    }
-  }, [initialUsers, dispatch]);
+  if (initialUsers) {
+    // Uses HYDRATE_STORAGE to protect existing local edits across reboots
+    dispatch({ type: 'HYDRATE_STORAGE', payload: initialUsers });
+  }
+}, [initialUsers, dispatch]);
 
   const handleLogin = (e) => {
     e.preventDefault();
