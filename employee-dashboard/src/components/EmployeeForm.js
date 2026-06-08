@@ -20,6 +20,7 @@ export const EmployeeForm = ({ currentEmployee, clearEdit }) => {
   const { state, dispatch } = useContext(GlobalContext);
   const inputRef = useRef(null);
   const isDark = state.theme === 'dark';
+  const themeClass = isDark ? 'dark' : 'light';
 
   const { values, errors, handleChange, validateForm, handleReset } = useForm(
     { firstName: '', email: '', department: 'Human Resources' },
@@ -52,54 +53,62 @@ export const EmployeeForm = ({ currentEmployee, clearEdit }) => {
     handleReset({ firstName: '', email: '', department: 'Human Resources' });
   };
 
-  // Styled Field Components to keep code clean
-  const labelStyle = { display: 'block', fontSize: '14px', fontWeight: '600', marginBottom: '6px', color: isDark ? '#d1d5db' : '#374151' };
-  const inputStyle = {
-    width: '100%', padding: '10px 14px', boxSizing: 'border-box', border: `1px solid ${isDark ? '#4b5563' : '#d1d5db'}`,
-    borderRadius: '6px', backgroundColor: isDark ? '#1f2937' : '#ffffff', color: isDark ? '#ffffff' : '#000000',
-    fontSize: '14px', outline: 'none'
-  };
-
   return (
-    <form onSubmit={handleSubmit} style={{ margin: 0 }}>
-      <h3 style={{ marginTop: 0, marginBottom: '20px', fontSize: '18px', fontWeight: '600' }}>
+    <form onSubmit={handleSubmit}>
+      <h3 className="card-title">
         {currentEmployee ? "✏️ Edit Employee Operations" : "➕ Register New Profile Node"}
       </h3>
       
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
-        <div>
-          <label style={labelStyle}>Full Name</label>
-          <input ref={inputRef} name="firstName" value={values.firstName} onChange={handleChange} style={inputStyle} placeholder="John Doe" />
-          {errors.firstName && <p style={{ color: '#ef4444', fontSize: '12px', margin: '4px 0 0' }}>{errors.firstName}</p>}
+      <div className="form-grid">
+        <div className="form-group">
+          <label className={`form-label ${themeClass}`}>Full Name</label>
+          <input 
+            ref={inputRef} 
+            name="firstName" 
+            value={values.firstName} 
+            onChange={handleChange} 
+            className={`form-input ${themeClass}`} 
+            placeholder="John Doe" 
+          />
+          {errors.firstName && <p className="error-msg">{errors.firstName}</p>}
         </div>
         
-        <div>
-          <label style={labelStyle}>Email Address</label>
-          <input name="email" value={values.email} onChange={handleChange} style={inputStyle} placeholder="john@company.com" />
-          {errors.email && <p style={{ color: '#ef4444', fontSize: '12px', margin: '4px 0 0' }}>{errors.email}</p>}
+        <div className="form-group">
+          <label className={`form-label ${themeClass}`}>Email Address</label>
+          <input 
+            name="email" 
+            value={values.email} 
+            onChange={handleChange} 
+            className={`form-input ${themeClass}`} 
+            placeholder="john@company.com" 
+          />
+          {errors.email && <p className="error-msg">{errors.email}</p>}
         </div>
 
-        <div>
-          <label style={labelStyle}>Operational Department Assignment</label>
-          <select name="department" value={values.department} onChange={handleChange} style={inputStyle}>
+        <div className="form-group">
+          <label className={`form-label ${themeClass}`}>Operational Department Assignment</label>
+          <select 
+            name="department" 
+            value={values.department} 
+            onChange={handleChange} 
+            className={`form-input ${themeClass}`}
+          >
             {DEPARTMENTS.map((dept) => <option key={dept} value={dept}>{dept}</option>)}
           </select>
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '25px' }}>
+      <div className="form-actions">
         {currentEmployee && (
-          <button type="button" onClick={clearEdit} style={{
-            padding: '10px 20px', borderRadius: '6px', border: `1px solid ${isDark ? '#4b5563' : '#d1d5db'}`,
-            backgroundColor: 'transparent', color: isDark ? '#d1d5db' : '#4b5563', cursor: 'pointer', fontSize: '14px', fontWeight: '500'
-          }}>
+          <button 
+            type="button" 
+            onClick={clearEdit} 
+            className={`btn-cancel ${themeClass}`}
+          >
             Cancel Action
           </button>
         )}
-        <button type="submit" style={{
-          padding: '10px 24px', borderRadius: '6px', border: 'none', backgroundColor: '#4f46e5', color: '#ffffff',
-          cursor: 'pointer', fontSize: '14px', fontWeight: '600', boxShadow: '0 2px 4px 0 rgba(79, 70, 229, 0.2)'
-        }}>
+        <button type="submit" className="btn-submit">
           {currentEmployee ? "Save Changes" : "Create Profile Record"}
         </button>
       </div>
