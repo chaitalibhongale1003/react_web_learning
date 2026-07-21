@@ -1,8 +1,15 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { expenseSchema } from "./validation";
 import type { ExpenseFormData } from "./validation";
+
 import styles from "./ExpenseForm.module.css";
+
+interface ExpenseFormProps {
+  initialValues?: ExpenseFormData;
+  onSubmit: (data: ExpenseFormData) => void;
+}
 
 const categories = [
   "Food",
@@ -15,14 +22,17 @@ const categories = [
   "Others",
 ];
 
-const ExpenseForm = () => {
+const ExpenseForm = ({
+  initialValues,
+  onSubmit,
+}: ExpenseFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ExpenseFormData>({
     resolver: zodResolver(expenseSchema),
-    defaultValues: {
+    defaultValues: initialValues ?? {
       title: "",
       amount: 0,
       category: "",
@@ -30,24 +40,27 @@ const ExpenseForm = () => {
     },
   });
 
-  const onSubmit = (data: ExpenseFormData) => {
-    console.log(data);
+  const handleFormSubmit = (data: ExpenseFormData) => {
+    onSubmit(data);
   };
 
   return (
     <form
       className={styles.form}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
     >
       <div>
         <label>Title</label>
 
         <input
           type="text"
+          placeholder="Enter expense title"
           {...register("title")}
         />
 
-        <p>{errors.title?.message}</p>
+        {errors.title && (
+          <p className={styles.error}>{errors.title.message}</p>
+        )}
       </div>
 
       <div>
@@ -55,12 +68,15 @@ const ExpenseForm = () => {
 
         <input
           type="number"
+          placeholder="Enter amount"
           {...register("amount", {
             valueAsNumber: true,
           })}
         />
 
-        <p>{errors.amount?.message}</p>
+        {errors.amount && (
+          <p className={styles.error}>{errors.amount.message}</p>
+        )}
       </div>
 
       <div>
@@ -79,7 +95,11 @@ const ExpenseForm = () => {
           ))}
         </select>
 
-        <p>{errors.category?.message}</p>
+        {errors.category && (
+          <p className={styles.error}>
+            {errors.category.message}
+          </p>
+        )}
       </div>
 
       <div>
@@ -90,10 +110,17 @@ const ExpenseForm = () => {
           {...register("date")}
         />
 
-        <p>{errors.date?.message}</p>
+        {errors.date && (
+          <p className={styles.error}>
+            {errors.date.message}
+          </p>
+        )}
       </div>
 
-      <button type="submit">
+      <button
+        className={styles.button}
+        type="submit"
+      >
         Save Expense
       </button>
     </form>

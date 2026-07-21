@@ -1,31 +1,35 @@
 import { NavLink } from "react-router-dom";
+
+import { NAVIGATION_ITEMS } from "../../constants/navigation";
+
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
-    <nav className={styles.navbar}>
-      <h2>💰 Expense Tracker</h2>
-
-      <div className={styles.links}>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? styles.activeLink : styles.link
-          }
-        >
-          Dashboard
-        </NavLink>
-
-        <NavLink
-          to="/add"
-          className={({ isActive }) =>
-            isActive ? styles.activeLink : styles.link
-          }
-        >
-          Add Expense
-        </NavLink>
+    <header className={styles.header}>
+      <div className={styles.logo}>
+        💰 Expense Tracker
       </div>
-    </nav>
+
+      <nav>
+        <ul className={styles.navList}>
+          {NAVIGATION_ITEMS.map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive
+                    ? styles.activeLink
+                    : styles.link
+                }
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
   );
 };
 

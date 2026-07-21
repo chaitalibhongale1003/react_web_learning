@@ -4,11 +4,11 @@ const EditExpense = () => {
   const { id } = useParams();
 
   return (
-    <>
+    <div>
       <h1>Edit Expense</h1>
 
-      <p>Expense ID: {id}</p>
-    </>
+      <p>ID : {id}</p>
+    </div>
   );
 };
 

@@ -1,0 +1,26 @@
+.container{
+
+    margin-top:60px;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    background:#ffffff;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.container h2{
+
+    color:#444;
+
+    margin-bottom:10px;
+}
+
+.container p{
+
+    color:#777;
+}
