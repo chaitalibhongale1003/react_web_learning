@@ -1,29 +1,22 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { EXPENSE_CATEGORIES } from "../../constants/categories";
+
 import { expenseSchema } from "./validation";
 import type { ExpenseFormData } from "./validation";
 
 import styles from "./ExpenseForm.module.css";
 
-interface ExpenseFormProps {
+export interface ExpenseFormProps {
   initialValues?: ExpenseFormData;
+  submitButtonText?: string;
   onSubmit: (data: ExpenseFormData) => void;
 }
 
-const categories = [
-  "Food",
-  "Shopping",
-  "Travel",
-  "Bills",
-  "Medical",
-  "Fuel",
-  "Entertainment",
-  "Others",
-];
-
 const ExpenseForm = ({
   initialValues,
+  submitButtonText = "Save Expense",
   onSubmit,
 }: ExpenseFormProps) => {
   const {
@@ -32,15 +25,19 @@ const ExpenseForm = ({
     formState: { errors },
   } = useForm<ExpenseFormData>({
     resolver: zodResolver(expenseSchema),
-    defaultValues: initialValues ?? {
-      title: "",
-      amount: 0,
-      category: "",
-      date: "",
-    },
+
+    defaultValues:
+      initialValues ?? {
+        title: "",
+        amount: 0,
+        category: "",
+        date: "",
+      },
   });
 
-  const handleFormSubmit = (data: ExpenseFormData) => {
+  const handleFormSubmit = (
+    data: ExpenseFormData
+  ) => {
     onSubmit(data);
   };
 
@@ -49,24 +46,36 @@ const ExpenseForm = ({
       className={styles.form}
       onSubmit={handleSubmit(handleFormSubmit)}
     >
-      <div>
-        <label>Title</label>
+      {/* Title */}
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>
+          Title
+        </label>
 
         <input
+          className={styles.input}
           type="text"
           placeholder="Enter expense title"
           {...register("title")}
         />
 
         {errors.title && (
-          <p className={styles.error}>{errors.title.message}</p>
+          <p className={styles.error}>
+            {errors.title.message}
+          </p>
         )}
       </div>
 
-      <div>
-        <label>Amount</label>
+      {/* Amount */}
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>
+          Amount
+        </label>
 
         <input
+          className={styles.input}
           type="number"
           placeholder="Enter amount"
           {...register("amount", {
@@ -75,17 +84,28 @@ const ExpenseForm = ({
         />
 
         {errors.amount && (
-          <p className={styles.error}>{errors.amount.message}</p>
+          <p className={styles.error}>
+            {errors.amount.message}
+          </p>
         )}
       </div>
 
-      <div>
-        <label>Category</label>
+      {/* Category */}
 
-        <select {...register("category")}>
-          <option value="">Select Category</option>
+      <div className={styles.formGroup}>
+        <label className={styles.label}>
+          Category
+        </label>
 
-          {categories.map((category) => (
+        <select
+          className={styles.select}
+          {...register("category")}
+        >
+          <option value="">
+            Select Category
+          </option>
+
+          {EXPENSE_CATEGORIES.map((category) => (
             <option
               key={category}
               value={category}
@@ -102,10 +122,15 @@ const ExpenseForm = ({
         )}
       </div>
 
-      <div>
-        <label>Date</label>
+      {/* Date */}
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>
+          Date
+        </label>
 
         <input
+          className={styles.input}
           type="date"
           {...register("date")}
         />
@@ -121,7 +146,7 @@ const ExpenseForm = ({
         className={styles.button}
         type="submit"
       >
-        Save Expense
+        {submitButtonText}
       </button>
     </form>
   );

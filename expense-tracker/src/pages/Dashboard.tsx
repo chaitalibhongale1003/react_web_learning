@@ -1,7 +1,6 @@
 import SummaryCard from "../components/SummaryCard/SummaryCard";
+import ExpenseCard from "../components/ExpenseCard/ExpenseCard";
 import EmptyState from "../components/EmptyState/EmptyState";
-
-import { useAppSelector } from "../app/hooks";
 
 import {
   selectExpenses,
@@ -9,9 +8,14 @@ import {
   selectTransactionCount,
 } from "../features/expense/selectors";
 
+import { deleteExpense } from "../features/expense/expenseSlice";
+
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+
 import styles from "./Dashboard.module.css";
 
 const Dashboard = () => {
+  const dispatch = useAppDispatch();
 
   const expenses =
     useAppSelector(selectExpenses);
@@ -22,14 +26,17 @@ const Dashboard = () => {
   const transactionCount =
     useAppSelector(selectTransactionCount);
 
+  const handleDeleteExpense = (
+    id: string
+  ) => {
+    dispatch(deleteExpense(id));
+  };
+
   return (
-
     <div className={styles.container}>
-
       <h1>Dashboard</h1>
 
       <div className={styles.grid}>
-
         <SummaryCard
           title="Total Expense"
           value={`₹ ${totalExpense}`}
@@ -39,22 +46,26 @@ const Dashboard = () => {
           title="Transactions"
           value={transactionCount}
         />
-
       </div>
 
       {expenses.length === 0 ? (
-
         <EmptyState
           title="No Expenses Yet"
           description="Click Add Expense to create your first expense."
         />
-
       ) : (
-
-        <p>Expense List Coming in Part 6...</p>
-
+        <div className={styles.list}>
+          {expenses.map((expense) => (
+            <ExpenseCard
+              key={expense.id}
+              expense={expense}
+              onDelete={
+                handleDeleteExpense
+              }
+            />
+          ))}
+        </div>
       )}
-
     </div>
   );
 };
