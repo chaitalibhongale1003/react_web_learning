@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { expenseSchema } from "./validation";
 import type { ExpenseFormData } from "./validation";
-
 import styles from "./ExpenseForm.module.css";
 
 const categories = [
