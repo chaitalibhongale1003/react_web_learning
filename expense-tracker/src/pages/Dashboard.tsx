@@ -1,10 +1,10 @@
 const Dashboard = () => {
   return (
-    <div>
+    <>
       <h1>Dashboard</h1>
 
-      <p>Welcome to Expense Tracker</p>
-    </div>
+      <p>Welcome to Expense Tracker.</p>
+    </>
   );
 };
 

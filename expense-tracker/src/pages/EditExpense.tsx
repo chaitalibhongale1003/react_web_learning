@@ -1,8 +1,14 @@
+import { useParams } from "react-router-dom";
+
 const EditExpense = () => {
+  const { id } = useParams();
+
   return (
-    <div>
+    <>
       <h1>Edit Expense</h1>
-    </div>
+
+      <p>Expense ID: {id}</p>
+    </>
   );
 };
 
