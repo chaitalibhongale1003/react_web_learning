@@ -4,19 +4,19 @@ import styles from "./ExpenseCard.module.css";
 
 interface ExpenseCardProps {
   expense: Expense;
+  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
 
 const ExpenseCard = ({
   expense,
+  onEdit,
   onDelete,
 }: ExpenseCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.left}>
-        <h3 className={styles.title}>
-          {expense.title}
-        </h3>
+        <h3 className={styles.title}>{expense.title}</h3>
 
         <p className={styles.category}>
           {expense.category}
@@ -32,12 +32,21 @@ const ExpenseCard = ({
           ₹ {expense.amount}
         </h2>
 
-        <button
-          className={styles.deleteButton}
-          onClick={() => onDelete(expense.id)}
-        >
-          Delete
-        </button>
+        <div className={styles.actions}>
+          <button
+            className={styles.editButton}
+            onClick={() => onEdit(expense.id)}
+          >
+            Edit
+          </button>
+
+          <button
+            className={styles.deleteButton}
+            onClick={() => onDelete(expense.id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

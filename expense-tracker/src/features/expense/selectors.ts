@@ -15,3 +15,10 @@ export const selectTotalExpenses = (
 export const selectTransactionCount = (
   state: RootState
 ) => state.expense.expenses.length;
+export const selectExpenseById = (
+  state: RootState,
+  id: string
+) =>
+  state.expense.expenses.find(
+    (expense) => expense.id === id
+  );

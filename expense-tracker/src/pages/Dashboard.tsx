@@ -1,6 +1,8 @@
 import SummaryCard from "../components/SummaryCard/SummaryCard";
 import ExpenseCard from "../components/ExpenseCard/ExpenseCard";
 import EmptyState from "../components/EmptyState/EmptyState";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../constants/routes";
 
 import {
   selectExpenses,
@@ -15,6 +17,8 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import styles from "./Dashboard.module.css";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
 
   const expenses =
@@ -25,6 +29,10 @@ const Dashboard = () => {
 
   const transactionCount =
     useAppSelector(selectTransactionCount);
+    
+  const handleEditExpense = (id: string) => {
+  navigate(`/edit/${id}`);
+   };
 
   const handleDeleteExpense = (
     id: string
@@ -59,6 +67,7 @@ const Dashboard = () => {
             <ExpenseCard
               key={expense.id}
               expense={expense}
+              onEdit={handleEditExpense}
               onDelete={
                 handleDeleteExpense
               }
